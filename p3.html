@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Proxima+Nova&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation System</title>
+    <style>
+        body {
+            font-family: 'Proxima Nova', Arial, sans-serif;
+            background-color: #040404;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #191414;
+            color: #fff;
+            width: 50%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        form {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        input[type="text"], button {
+            font-size: 1em;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"] {
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            background-color: #1DB954;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #14833b;
+            transform: scale(1.05);
+        }
+
+        #recommendations {
+            margin-top: 20px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        #recommendations ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #recommendations li {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        #recommendations li:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Recommendation System</h1>
+        <form id="recommendationForm">
+            <label for="genre">Enter Song Name:</label>
+            <input type="text" id="genre" name="genre" placeholder="e.g., wRoNg, Real Slim Shady ">
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <div id="recommendations">
+            <!-- Recommendations will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('recommendationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            var genre = document.getElementById('genre').value;
+
+            // Here you can implement logic to fetch recommendations based on genre
+            var recommendations = getRecommendations(genre); // Replace with your recommendation logic
+
+            // Display recommendations
+            showRecommendations(recommendations);
+        });
+
+        function getRecommendations(genre) {
+            // Dummy recommendations (replace with actual logic to fetch recommendations)
+            var recommendations = [
+                { title: 'Song 1', artist: 'Artist 1' },
+                { title: 'Song 2', artist: 'Artist 2' },
+                { title: 'Song 3', artist: 'Artist 3' }
+            ];
+            return recommendations;
+        }
+
+        function showRecommendations(recommendations) {
+            var recommendationsDiv = document.getElementById('recommendations');
+            recommendationsDiv.innerHTML = ''; // Clear previous recommendations
+
+            if (recommendations.length === 0) {
+                recommendationsDiv.innerHTML = '<p>No recommendations found.</p>';
+            } else {
+                var ul = document.createElement('ul');
+                recommendations.forEach(function(item) {
+                    var li = document.createElement('li');
+                    li.textContent = item.title + ' - ' + item.artist;
+                    ul.appendChild(li);
+                });
+                recommendationsDiv.appendChild(ul);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+/* Ensure that body and html occupy the full viewport */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Container for the loading spinner, positioned near the bottom */
+.loading-container {
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Styling for the circular loading spinner with gradient */
+.loading-spinner {
+    width: 120px;
+    height: 120px;
+    border: 16px solid transparent; /* Transparent border for gradient effect */
+    border-top: 16px solid green; /* Green color for top border */
+    border-radius: 50%; /* Ensures the spinner is circular */
+    animation: spin 2s linear infinite;
+    /* Gradient for border-top */
+ 
+    background-clip: border-box;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* Keyframes for the spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Accessibility improvements */
+.loading-spinner {
+    /* Use ARIA to indicate loading */
+    role: status;
+    aria-live: polite;
+    /* Ensure spinner is visually hidden from screen readers */
+    display: inline-block;
+}
+

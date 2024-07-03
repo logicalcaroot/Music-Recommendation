@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Proxima+Nova&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation System</title>
+    <style>
+        body {
+            font-family: 'Proxima Nova', Arial, sans-serif;
+            background-color: #040404;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #191414;
+            color: #fff;
+            width: 50%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        form {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        input[type="text"], button {
+            font-size: 1em;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"] {
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            background-color: #1DB954;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #14833b;
+            transform: scale(1.05);
+        }
+
+        #recommendations {
+            margin-top: 20px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        #recommendations ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #recommendations li {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        #recommendations li:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Recommendation System</h1>
+        <form id="recommendationForm" action="{{ url_for('search') }}" method="post">
+            <label for="song_name">Enter Song Name:</label>
+            <input type="text" id="song_name" name="song_name" placeholder="e.g., wRoNg, Real Slim Shady " required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <div id="recommendations">
+            <!-- Recommendations will be displayed here -->
+        </div>
+    </div>
+</body>
+</html>

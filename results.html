@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Proxima+Nova&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: 'Proxima Nova', Arial, sans-serif;
+            background-color: #040404;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #191414;
+            color: #fff;
+            width: 50%;
+            
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #444;
+        }
+
+        a {
+            color: #1DB954;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #333;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        a:hover {
+            background-color: #14833b;
+            transform: scale(1.05);
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results for "{{ song_name }}"</h1>
+        <ul>
+            {% for index, song in song_list.iterrows() %}
+            <li>
+                <a href="{{ url_for('play', song_index=song.name) }}">
+                    {{ song['name'] }} by {{ song['artist'] }} ({{ song['year'] }})
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a class="back-link" href="{{ url_for('home') }}">Go Back</a>
+    </div>
+</body>
+</html>
